@@ -92,7 +92,7 @@ indicating a ~$97 million net profit increase per unit gain of sentiment score.
 For production companies, it's not always feasible to create high budget, critically
 acclaimed films, but they can control the naming. One actionable recommendation 
 is to title movies positively, as audiences seem more inclined to purchase tickets
-to these films.
+to positively named films.
 
 ## Dataset Overview & Issues
 
