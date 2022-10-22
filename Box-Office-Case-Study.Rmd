@@ -1,5 +1,5 @@
 ---
-title: \vspace{-1.5cm} Factors Effecting Box Office Success
+title: \vspace{-1.5cm} Factors Affecting Box Office Success
 # subtitle: "A STA610 Case Study"
 author: "Andrew Amore"
 date: "2022-10-14"

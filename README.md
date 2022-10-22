@@ -1,4 +1,4 @@
-# Factors Effecting Box Office Success
+# Factors Affecting Box Office Success
 
 ## Abstract
 Movie production companies are interested in understanding variables contributing
