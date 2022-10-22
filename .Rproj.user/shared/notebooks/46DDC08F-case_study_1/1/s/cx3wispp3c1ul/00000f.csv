@@ -1,1 +1,0 @@
-"0","plot(density(log(df$Box.Office), na.rm=TRUE))"

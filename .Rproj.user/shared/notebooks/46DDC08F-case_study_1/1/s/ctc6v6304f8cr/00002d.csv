@@ -1,8 +1,0 @@
-"0",""
-"0","## drop netflix films and Outliers"
-"0","df = df %>%"
-"0","  filter(!(grepl(""Netflix"", Production.Company, fixed = TRUE) & Title != ""Isn't It Romance"")) %>%"
-"0","  filter(!Title %in% c(""Avengers: Endgame"", ""The Lion King"", ""Frozen II""))"
-"0",""
-"0","## create dropped dataset"
-"0","dropped_df = na.omit(df)"

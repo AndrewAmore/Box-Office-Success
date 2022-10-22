@@ -1,5 +1,0 @@
-"0","mixed_model_1 = lmer(formula = Net.Profit ~ Budget +  Critic.Score + Title.Sentiment + "
-"0","                     (1 | Release.Month), data=dropped_df)"
-"0","# summary(mixed_model_1)"
-"0","# REsim(mixed_model_1)             # mean, median and sd of the random effect estimates"
-"0","# plotREsim(REsim(mixed_model_1))  # plot the interval estimates"
