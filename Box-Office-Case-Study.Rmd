@@ -1,6 +1,6 @@
 ---
-title: \vspace{-1.5cm} Factors of Box Office Success
-subtitle: "A STA610 Case Study"
+title: \vspace{-1.5cm} Factors Effecting Box Office Success
+# subtitle: "A STA610 Case Study"
 author: "Andrew Amore"
 date: "2022-10-14"
 output: pdf_document
@@ -73,26 +73,27 @@ df$Release.Month = as.factor(months(df$Release.Date))
 Movie production companies are interested in understanding what variables 
 contribute to a successful film, particularly whether a film’s budget and IMBD score 
 are predictive of net profits. Box office data from all 2019 film releases 
-was collected and enhanced with additional fields to address this question. 
+was collected and enhanced with additional features to address this question. 
 
-A linear model, with no random effects, was initially fit to explore response
-associations and establish a baseline. The initial model displayed poor fit 
-according to residual standard error and additional covariate inclusion/interaction
-was explored, warranting a more complicated analysis. Several hierarchical models
-were assessed to address heteroscedastic variance concerns using different data 
-grouping structures. Ultimately, random effects were applied to observations based
-on release date (month). The random intercept model showed little estimation difference
-compared to the reference model, but adding a random slope on 'Critic.Score' enhanced the
-estimation accuracy for most fixed effects.
+Initially, a linear model was used to explore response associations and establish
+a baseline. The initial model displayed poor fit according to the residual standard 
+error distribution, warranting a more complicated analysis. Several hierarchical models
+were used to address heteroscedastic variance concerns and ultimately a mixed effect
+model was applied to observations based on release month which enhanced estimation 
+accuracy for most fixed effects.
 
-In the final model estimates for 'Budget' and 'Critic.Score' have significant
-positive effects on profitability at the 95% level. Every $1 increase
-in budget yields an additional profit of $2.43 and improving the IMBD score by 1 
-point leads to a net increase in profit of ~$45 million. In addition, 'Title.Sentiment',
-defined as the polarity score of the film's name, had a surprising p-value of 0.057
-in the final model indicating a ~$97 million net profit increase for every additional
-polarity score increment. Something a production company should consider when 
-naming a movie!
+Final estimates for 'Budget' and 'Critic.Score' have significant positive effects 
+on profitability at the 95% level. On average, every $1 increase in budget yields
+an additional profit of $2.43 and improving the IMBD score by 1 point leads to a
+net profit increase of ~$45 million. In addition, augmented field 'Title.Sentiment',
+defined as the polarity score of the film's title, showed suprising significance,
+indicating a ~$97 million net profit increase for every additional gain in sentiment
+score. 
+
+For production companies, it's not always feasible to create high budget, critically
+acclaimed films, but they can control the naming. One actionable recommendation 
+is to title movies positively, as audiences seem more inclined to purchase tickets
+to these films.
 
 ## Dataset Overview & Issues
 
@@ -187,8 +188,8 @@ ggplot(tst, aes(x=row.names(tst), y=na_count/nrow(df))) +
 
 <!-- **Other Data Issues**   -->
 **Limited Releases:** There are some additional concerns with the data. First, we have no information
-about how box office metrics were collected, such as how long after a film's release
-date or the number of screening theaters. Films debuting as limited releases have
+about how box office metrics were collected, such as release duration or the number 
+of screening theaters. Films debuting as limited releases have
 fewer opportunities to generate box office profits and have skewed revenue numbers.
 A known example of a limited release is "The Irishman", shown below. At first 
 glance the film appears to have lost over $100 million, but additional research 
@@ -561,6 +562,8 @@ ggarrange(p1, p2, ncol=2, nrow=1)
 #                color = "black", size = 14))
 ```
 
+\newpage
+
 Several hierarchical models were tried with the data. First, a random
 intercept on release month was added. The model can be described using the same
 notation as the final reference linear model with new parameter 
@@ -635,7 +638,7 @@ the random slope for 'Critic.Score', $\gamma_{j[i]}$ the random effect for
 critic score of film $c_i$, in addition to all other parameters from the
 baseline reference linear model.
 
-$$y_{ij} = \beta_0  + X\beta  + \gamma_{j[i]} c_i + \epsilon_i \ \text{ where } \epsilon_i \sim N(0, \sigma^2)$$
+$$y_{ij} = \beta_0  + X\beta  + \gamma_{j[i]} c_i + \epsilon_{ij} \ \text{ where } \epsilon_{ij} \sim N(0, \sigma^2)$$
 
 ```{r}
 mixed_model_2 = lmer(formula = Net.Profit ~ Budget +  Critic.Score + Title.Sentiment + 
@@ -698,7 +701,7 @@ ggtexttable(rslts, rows = NULL,
 ```
 
 
-```{r, include=TRUE, fig.height=3.5, fig.cap="Interval Estimates for the Random Effect"}
+```{r, include=TRUE, fig.height=3.3, fig.cap="Interval Estimates for the Random Effect"}
 plotREsim(REsim(mixed_model_2))  # plot the interval estimates
 ```
 
@@ -727,32 +730,28 @@ data quality. Standard linear regression and mixed effect models were evaluated
 to assess the statistical significance of covariates on profitability. 
 'Budget' and 'Critic.Score' were found to have significant positive effects at the 95% 
 confidence level, while 'Title.Sentiment' was found to be significant at the 90% 
-confidence level also adding a positive effect. Obviously, it is not always possible
-to create a high budget, critically acclaimed film, but one actionable recommendation 
-to production companies is to title films more positively as audiences seem more
-inclined to watch these films. However, it's important to note that more analysis is 
-needed to determine the causal relationship between 'Title.Sentiment' and net 
-profitability.
+confidence level, adding a suprising positive effect. However, it's important 
+to note that more analysis is needed to determine the causal relationship between 
+'Title.Sentiment' and net profitability as only associativity is assessed. In addition,
+there are several limitations of this analysis and the main concerns are addressed.
 
-<!-- contrast hierarchical findings here -->
-
-There are several limitations of this analysis mentioned throughout, but the main
-concerns are highlighted. First, the sample contains a large fraction of missing
-data, is relatively small, and only contains a single year of observations which increases
-the variability of the analysis as 2019 might not be representative year of overall 
-film releases. Second, no knowledge of the data collection procedure is provided 
-and increases the difficulty of assessing covariate effects on overall net profit
-because some films might release in a limited number of theaters or for a 
-pre-specified length of time that makes aggregate profit potentially misleading.
-To combat this one could code profitability as a binary response indicator, 
-$\{0,1\}$, and fit a logistic regression on the new dependent variable. This would
-minimize the influence of large outliers observed in the dataset and potentially
-make the analysis more robust. However, one would lose the ability to quantify 
-the direct covariate effect on overall profit which feels relevant to evaluate.
-Lastly, there is no obvious clustering field for a hierarchical model provided
-in the dataset and spending more time to group genres together rather than month
-of release could yield a more beneficial analysis.
-
+First, the sample contains a large fraction of missing data, is relatively small, 
+and only contains a single year of observations which might not be representative 
+of overall film releases. 
+Second, no knowledge of the data collection procedure is provided and raises concerns
+about the use of overall profit as a metric which may be misleading. Outlier 
+detection revealed several films with excessive losses that released limitedly,
+but more lower budget limited releases may be present. To combat this, one could 
+code profitability as a binary response indicator, $\{0,1\}$, and fit a logistic 
+regression on the new dependent variable, minimizing the influence of any outliers
+and potentially make the analysis more robust. However, the ability to quantify 
+direct covariate effect on overall profit would be lost, which feels relevant to
+any profit evaluation. 
+Third, there is no obvious clustering field for a hierarchical 
+model. Spending more time to manually group like genres may yield higher standard
+error reduction and more accurate coefficient estimates.
+Lastly, more analysis is needed to determine the causal relationship between 
+'Title.Sentiment' and net profitability as the current report analyzes association.
 
 <!-- ## Appendix -->
 
