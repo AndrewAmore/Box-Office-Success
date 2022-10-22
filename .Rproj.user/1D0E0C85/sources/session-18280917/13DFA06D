@@ -1,0 +1,28 @@
+{
+    "id": "13DFA06D",
+    "path": "~/Duke/Courses/STA_610_Hierarchical_Models/case_studies/case_study_1/case_study_1.Rmd",
+    "project_path": "case_study_1.Rmd",
+    "type": "r_markdown",
+    "hash": "3573251645",
+    "contents": "",
+    "dirty": false,
+    "created": 1665069078673.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "75,76",
+        "scrollLine": "66",
+        "last_setup_crc32": ""
+    },
+    "folds": "759|17|769|0|\n771|11|780|0|\n782|17|804|0|\n806|21|815|0|\n",
+    "lastKnownWriteTime": 1666397456,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1666397456850,
+    "read_only": false,
+    "read_only_alternatives": []
+}
