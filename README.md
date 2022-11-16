@@ -28,6 +28,6 @@ to positively named films.
 
 ## Documents of interest
 
-- `Box-Office-Case-Study.pdf`: Written report, outlining our research, simulations procedure, case study, discussion, and results
-- `Box-Office-Case-Study.Rmd` and `Scripts/` files: Code used to generate `Project.pdf`
+- `Box-Office-Case-Study.pdf`: Written report, outlining data analysis procedure, discussion, and results
+- `Box-Office-Case-Study.Rmd`: Code used to generate `Box-Office-Case-Study.pdf`
 - `./data/`: Raw data directory.
