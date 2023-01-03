@@ -1,4 +1,5 @@
 # Factors Affecting Box Office Success
+This repository contains code used to generate the paper [Box-Office-Case-Study.pdf](Box-Office-Case-Study.pdf).
 
 ## Abstract
 Movie production companies are interested in understanding variables contributing
