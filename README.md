@@ -18,7 +18,7 @@ Final estimates for 'Budget' and 'Critic.Score' have statistically significant
 positive effects on profitability at the 95% level. On average, every $1 increase
 in budget yields an additional profit of $2.43 and improving the IMBD score by one 
 point leads to a net profit increase of ~$45 million. In addition, augmented field 'Title.Sentiment',
-defined as the polarity score of the film's title, showed suprising significance,
+defined as the polarity score of the film's title, showed surprising significance,
 indicating a ~$97 million net profit increase per unit gain of sentiment score. 
 
 For production companies, it's not always feasible to create high budget, critically
